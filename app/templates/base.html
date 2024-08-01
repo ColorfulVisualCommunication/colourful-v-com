@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta 
+          name="viewport" 
+          content="width=device-width, initial-scale=1"
+      >
+      <meta 
+          http-equiv="refresh" 
+          content="">
+      <meta 
+          name="description"
+          content="branding, captivating graphics and web solutions, networking,to provide innovative 
+        solutions tailored to digital needs."
+      >
+      <meta 
+          name="keywords" 
+          content="website, web application, web developer, logo designing,
+        graphic designing, website design, build a website, web design, website designer,web designer">
+      <meta 
+          name="author" 
+          content="njoroge">
+    <title>
+        {% block title %}
+        Colourful Visual Communication
+        {% endblock %}
+    </title>
+      
+      <!-- Font Awesome -->
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        rel="stylesheet"
+      />
+      <!-- Google Fonts -->
+      <link
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        rel="stylesheet"
+      />
+      <!-- MDB -->
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.min.css"
+        rel="stylesheet"
+      />
+  </head>
+    
+  <body class="container-fluid">
+    <header>
+       
+        <!-- Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+            <div class="container-fluid justify-content-between">
+                <!-- Left elements -->
+                <div class="d-flex">
+                    <!-- Brand -->
+                    <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="#">
+                      <img
+                        src="{{ url_for('static', filename='img/cvc-logo.svg') }}" 
+                          
+                        height="40"
+                        alt="Colourful Visual Communication Logo"
+                        loading="lazy"
+                        style="margin-top: 2px;"
+                      />
+                    </a>
+
+                </div>
+                <!-- Left elements -->
+
+                <!-- Center elements -->
+                <ul class="navbar-nav flex-row d-none d-md-flex">
+                    <li class="nav-item me-3 me-lg-5">
+                        <a class="nav-link" href="{{ url_for('main.home_page') }}">Home</a>
+                    </li>
+                    <li class="nav-item me-3 me-lg-5">
+                        <a class="nav-link" href="{{ url_for('main.about_page') }}">About</a>
+                    </li>
+                    <li class="nav-item me-3 me-lg-5">
+                        <a class="nav-link" href="{{ url_for('main.services_page') }}">Services</a>
+                    </li>
+                    <li class="nav-item me-3 me-lg-5">
+                        <a class="nav-link" href="{{ url_for('main.contact_page') }}">Contact</a>
+                    </li>
+                    <li class="nav-item me-3 me-lg-5">
+                        <a class="nav-link" href="{{ url_for('main.faq_page') }}">FAQ</a>
+                    </li>
+                    <li class="nav-item me-3 me-lg-5">
+                        <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                    </li>
+                    <li class="nav-item me-3 me-lg-5">
+                        <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
+                    </li>
+                </ul>
+                <!-- Center elements -->
+
+                <!-- Right elements -->
+                <ul class="navbar-nav flex-row list-unstyled">
+                     <li>
+                    <!-- Search form -->
+                    <form class="input-group w-auto my-auto d-none d-sm-flex">
+                        <input
+                            autocomplete="off"
+                            type="search"
+                            class="form-control rounded"
+                            placeholder="Search"
+                            style="min-width: 125px;"
+                            />
+                            <span class="input-group-text border-0 d-none d-lg-flex"
+                            ><i class="fas fa-search"></i
+                            ></span>
+                    </form>
+
+                    <!-- Avatar -->
+                        <li class="nav-item dropdown">
+                            <a
+                              data-mdb-dropdown-init
+                              class="nav-link dropdown-toggle d-flex align-items-center"
+                              href="#"
+                              id="navbarDropdownMenuLink"
+                              role="button"
+                              aria-expanded="false"
+                            >
+                              <img
+                                  src="{{ url_for('static', filename='img/steve-pp.png') }}"
+                                class="rounded-circle"
+                                height="22"
+                                alt="profile picture"
+                                loading="lazy"
+                              />
+                                <strong class="d-none d-sm-block ms-1">Steve</strong>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                              <li>
+                                <a class="dropdown-item" href="#">My profile</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Settings</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Logout</a>
+                              </li>
+                            </ul>
+                          </li>
+                    </ul>
+                    <!-- Right elements -->
+                </div>
+        </nav>
+        <!-- Navbar -->
+        
+    </header>
+
+    <main>
+          {% block content %}
+          {% endblock %}
+    </main>
+
+    <footer>
+        <!-- Footer -->
+        <footer class=" container-fluid text-center text-white bg-body-tertiary" data-bs-theme="dark">
+
+            <!-- Section: Social media -->
+            <section class="mb-4">
+              <!-- Facebook -->
+              <a 
+                  data-mdb-ripple-init 
+                  class="btn btn-outline btn-floating m-1" 
+                  href="https://www.facebook.com/ColorfulVisualCommunication/" 
+                  role="button"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+
+              <!-- Twitter -->
+              <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="#!" role="button"
+                ><i class="fab fa-twitter"></i
+              ></a>
+
+              <!-- Google -->
+              <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="#!" role="button"
+                ><i class="fab fa-google"></i
+              ></a>
+
+              <!-- Instagram -->
+              <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="#!" role="button"
+                ><i class="fab fa-instagram"></i
+              ></a>
+
+              <!-- Linkedin -->
+              <a 
+                  data-mdb-ripple-init 
+                  class="btn btn-outline btn-floating m-1" 
+                  href="https://www.linkedin.com/in/stephen-njoroge-68b90b234" 
+                  role="button"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+
+              <!-- Github -->
+              <a 
+                  data-mdb-ripple-init 
+                  class="btn btn-outline btn-floating m-1" 
+                  href="https://github.com/ColorfulVisualCommunication" 
+                  role="button"
+                ><i class="fab fa-github"></i
+              ></a>
+            </section>
+            <!-- Section: Social media -->
+            
+            <!-- Section: Form -->
+            <section class="">
+              <form action="">
+                <!--Grid row-->
+                <div class="row d-flex justify-content-center">
+                  <!--Grid column-->
+                  <div class="col-auto">
+                    <p class="pt-2">
+                      <strong>Sign up for our newsletter</strong>
+                    </p>
+                  </div>
+                  <!--Grid column-->
+
+                  <!--Grid column-->
+                  <div class="col-md-5 col-12">
+                    <!-- Email input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                      <input type="email" id="form5Example24" class="form-control" />
+                      <label class="form-label" for="form5Example24">Email address</label>
+                    </div>
+                  </div>
+                  <!--Grid column-->
+
+                  <!--Grid column-->
+                  <div class="col-auto">
+                    <!-- Submit button -->
+                    <button data-mdb-ripple-init type="submit" class="btn btn-outline mb-4">
+                      Subscribe
+                    </button>
+                  </div>
+                  <!--Grid column-->
+                </div>
+                <!--Grid row-->
+              </form>
+            </section>
+            <!-- Section: Form -->
+          <!-- Section: Links -->
+          <section class=" mb-4 pb-5">
+            <!--Grid row-->
+            <div class="row ">
+              <a class="col-lg-4 col-sm-12 mb-4 mb-md-0" href="#">
+                <img src="{{url_for('static', filename='img/cvc-logo.svg')}}" 
+                  alt="Logo" 
+                  width="300px" 
+                  height="auto" 
+                  class="d-inline-block align-text-top"
+              ></a>
+
+              <!--Grid column-->
+              <div class="col-lg-4 col-sm-12 mb-4 mb-md-0">
+                <ul class="list-unstyled mb-0 ">
+                  <li><a class="text-warning text-decoration-none" 
+                        href="#">Web_design</a
+                  ></li>
+                  <li><a class="text-warning text-decoration-none" 
+                        href="#">Graphics_design</a
+                  ></li>
+                  <li><a class="text-warning text-decoration-none" 
+                        href="#">Branding</a
+                  ></li>
+                </ul>
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-lg-4 col-sm-12 mb-4 mb-md-0">
+                <ul class="list-unstyled mb-0">
+                  <li><a class="text-warning text-decoration-none" href="#!">About_Us</a></li>
+                  <li><a class="text-warning text-decoration-none" href="#!">Contact_Us</a></li>
+                  <li><a class="text-warning text-decoration-none" href="#!">Products</a></li>
+                </ul>
+              </div>
+              <!--Grid column-->
+            </div>
+            <!--Grid row-->
+          </section>
+          <!-- Copyright -->
+          <div class=" row text-center p-4 border-top">
+            <div class="col-3 text-monospace">
+              Made with <i class="fa-solid fa-heart text-danger"></i> by: <span style="color: #ed3162">Njoroge</span> 
+            </div>
+            <div class="col-6">
+              © 2023 - 2024 Copyright:
+              <a class="text-reset  text-decoration-none text-monospace" 
+                href="{{url_for('main.home_page')}}">Colourful Visual Communication.</a>
+                All Rights Reserved.
+            </div>
+            <div class="col-3 d-inline">
+              <a class="text-warning text-decoration-none px-2" href="#!">Terms</a>
+              <a class="text-warning text-decoration-none px-2" href="#!">Privacy</a>
+              <a class="text-warning text-decoration-none px-2" href="#!">FAQ</a>
+            </div>
+          </div>
+        <!-- Footer -->
+    </footer>
+            
+    <!-- MDB -->
+    <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"
+    ></script>
+  </body>
+</html>

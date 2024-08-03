@@ -5,8 +5,8 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 
 db = SQLAlchemy()# init SQLAlchemy so we can use it later in our models
-migrate = Migrate()
 login_manager = LoginManager()
+migrate = Migrate()
 bcrypt = Bcrypt()
 
 def create_app():
@@ -20,6 +20,7 @@ def create_app():
     db.init_app(app)
     bcrypt.init_app(app)
     login_manager.init_app(app)
+    migrate.init_app(app, db)
     login_manager.login_view = 'auth.login'
     login_manager.login_message_category = 'info'
 
@@ -27,17 +28,16 @@ def create_app():
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint, url_prefix='/')
     
-    from app.users.auth import auth as auth_blueprint
+    from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
+
+    from .user import user as user_blueprint
+    app.register_blueprint(user_blueprint)
+
+    from .products import products as products_blueprint
+    app.register_blueprint(products_blueprint)
 
     # Add other blueprints similarly...
 
     
     return app
-    
-# Define the user_loader function
-@login_manager.user_loader
-def load_user(user_id):
-    from app.users.models import User  # Import here to avoid circular import
-    # Query the User model to get the user by ID
-    return User.query.get(int(user_id))

@@ -1,13 +1,11 @@
-from flask import render_template, redirect, url_for, flash, request
+from flask import render_template, redirect, url_for, flash, request, current_app
 from flask_login import login_user, logout_user, current_user, login_required
-from flask_wtf.form import current_app
 from werkzeug.utils import secure_filename
 import os
 from . import auth
 from .forms import LoginForm, RegistrationForm, UpdateProfileForm
 from ..models import User
 from .. import db, bcrypt
-
 
 UPLOAD_FOLDER = 'app/static/img/profile_pics'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
@@ -26,10 +24,28 @@ def login():
         if user and bcrypt.check_password_hash(user.password_hash, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('main.home_page'))
+            if user.is_admin:
+                return redirect(next_page) if next_page else redirect(url_for('admin.dashboard'))
+            else:
+                return redirect(next_page) if next_page else redirect(url_for('main.home_page'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
+
+@auth.route("/admin_login", methods=['GET', 'POST'])
+def admin_login():
+    if current_user.is_authenticated:
+        return redirect(url_for('admin.dashboard'))
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and user.is_admin and bcrypt.check_password_hash(user.password_hash, form.password.data):
+            login_user(user, remember=form.remember.data)
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('admin.dashboard'))
+        else:
+            flash('Admin Login Unsuccessful. Please check email and password', 'danger')
+    return render_template('admin_login.html', title='Admin Login', form=form)
 
 @auth.route("/register", methods=['GET', 'POST'])
 def register():
@@ -55,7 +71,6 @@ def register():
         return redirect(url_for('auth.login'))
 
     return render_template('register.html', title='Register', form=form)
-
 
 @auth.route("/logout")
 def logout():

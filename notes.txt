@@ -3,3 +3,9 @@
       flask db migrate -m "Initial migration."
       flask db upgrade
 
+postgresql+psycopg2://postgres.kmdejzkpddhkuqsqphst:@aws-0-ca-central-1.pooler.supabase.com:6543/postgresdbname=postgres
+
+postgresql+psycopg2://postgres.kmdejzkpddhkuqsqphst:$m!l3CVC724@aws-0-ca-central-1.pooler.supabase.com:6543/postgres
+postgresql://postgres:postgres@localhost:54322/postgres
+
+postgres.kmdejzkpddhkuqsqphst

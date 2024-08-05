@@ -1,16 +1,20 @@
 from flask import render_template
+from app.newsletter.forms import NewsletterForm
 from . import main
 
 @main.route("/")
 def home_page():
+    form = NewsletterForm()
     return render_template('home.html')
 
 @main.route("/")
 def index_page():
+    form = NewsletterForm()
     return render_template('index.html')
 
 @main.route("/contact")
 def contact_page():
+    form = NewsletterForm()
     return render_template('contact.html')
 
 @main.route("/about")

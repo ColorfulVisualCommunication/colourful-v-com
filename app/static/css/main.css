@@ -1,0 +1,34 @@
+.input-group {
+  position: relative;
+}
+
+.input-group-text {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+
+.social-links-vertical {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+.social-links-vertical h6 {
+  writing-mode: vertical-rl;
+  transform: rotate(0deg);
+  margin-bottom: 20px;
+}
+.social-links-vertical a {
+  display: block;
+  margin-bottom: 10px;
+}
+.main-content {
+  margin: 0 100px; /* Leave space for left and right columns */
+}
+
+    

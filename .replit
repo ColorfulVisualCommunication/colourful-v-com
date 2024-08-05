@@ -1,4 +1,4 @@
-modules = ["python-3.10"]
+modules = ["web", "python-3.12", "nodejs-20", "nix"]
 [nix]
 channel = "stable-24_05"
 

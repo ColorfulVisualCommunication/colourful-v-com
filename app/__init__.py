@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, g
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -27,17 +27,26 @@ def create_app():
     # Register blueprints
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint, url_prefix='/')
-    
+
     from .auth import auth as auth_blueprint
-    app.register_blueprint(auth_blueprint)
+    app.register_blueprint(auth_blueprint, url_prefix='/')
 
     from .user import user as user_blueprint
-    app.register_blueprint(user_blueprint)
+    app.register_blueprint(user_blueprint, url_prefix='/')
 
     from .products import products as products_blueprint
-    app.register_blueprint(products_blueprint)
+    app.register_blueprint(products_blueprint, url_prefix='/')
 
-    # Add other blueprints similarly...
+    from .admin import admin as admin_blueprint
+    app.register_blueprint(admin_blueprint, url_prefix='/admin')
 
-    
+    from .newsletter import newsletter as newsletter_blueprint
+    app.register_blueprint(newsletter_blueprint, url_prefix='/newsletter')
+
+    from app.newsletter.forms import NewsletterForm
+
+    @app.before_request
+    def inject_newsletter_form():
+        g.newsletter_form = NewsletterForm()
+        
     return app

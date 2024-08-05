@@ -1,4 +1,5 @@
-from flask import render_template
+from flask import render_template, jsonify
+from app.models import Product
 from . import products
 
 @products.route("/products")

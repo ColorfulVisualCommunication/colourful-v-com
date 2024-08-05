@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}Manage Blog{% endblock %}
+{% block content %}
+<div class="container my-4">
+    <h1>Manage Blog Posts</h1>
+    <a href="{{ url_for('admin.new_blog') }}" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> New Post</a>
+    <div class="list-group">
+        {% for blog in blogs %}
+            <div class="list-group-item">
+                <h5 class="mb-1">{{ blog.title }}</h5>
+                <p class="mb-1">{{ blog.content[:100] }}...</p>
+                <a href="{{ url_for('admin.edit_blog', blog_id=blog.id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                <form action="{{ url_for('admin.delete_blog', blog_id=blog.id) }}" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %}Manage Chats{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Manage Chats</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Message</th>
+                <th>Date Posted</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chat in chats %}
+            <tr>
+                <td>{{ chat.id }}</td>
+                <td>{{ chat.user.username }}</td>
+                <td>{{ chat.message }}</td>
+                <td>{{ chat.date_posted.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td>
+                    <form action="{{ url_for('admin.delete_chat', chat_id=chat.id) }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

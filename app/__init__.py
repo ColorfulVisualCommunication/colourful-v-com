@@ -3,11 +3,13 @@ from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
+from flask_socketio import SocketIO
 
 db = SQLAlchemy()# init SQLAlchemy so we can use it later in our models
 login_manager = LoginManager()
 migrate = Migrate()
 bcrypt = Bcrypt()
+socketio = SocketIO()
 
 def create_app():
     app = Flask(__name__)
@@ -19,6 +21,7 @@ def create_app():
     
     db.init_app(app)
     bcrypt.init_app(app)
+    socketio.init_app(app)
     login_manager.init_app(app)
     migrate.init_app(app, db)
     login_manager.login_view = 'auth.login'
@@ -44,9 +47,12 @@ def create_app():
     app.register_blueprint(newsletter_blueprint, url_prefix='/newsletter')
 
     from app.newsletter.forms import NewsletterForm
-
+    
+    from app import views
+    
     @app.before_request
     def inject_newsletter_form():
         g.newsletter_form = NewsletterForm()
         
     return app
+    

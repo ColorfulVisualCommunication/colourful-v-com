@@ -8,4 +8,32 @@ postgresql+psycopg2://postgres.kmdejzkpddhkuqsqphst:@aws-0-ca-central-1.pooler.s
 postgresql+psycopg2://postgres.kmdejzkpddhkuqsqphst:$m!l3CVC724@aws-0-ca-central-1.pooler.supabase.com:6543/postgres
 postgresql://postgres:postgres@localhost:54322/postgres
 
-postgres.kmdejzkpddhkuqsqphst
+
+rm -rf migrations/
+flask db init
+flask db migrate -m "Initial migration"
+flask db migrate -m "Add blog table"
+flask db upgrade
+
+pip install flask-socketio
+
+/app
+  /templates
+    /admin
+      - dashboard.html
+      - manage_users.html
+      - edit_user.html
+      - 
+      - 
+      - 
+    /main
+      - home.html
+      - other_templates.html
+  /static
+    /css
+    /js
+    /images
+  /models.py
+  /views.py
+  /config.py
+  /__init__.py

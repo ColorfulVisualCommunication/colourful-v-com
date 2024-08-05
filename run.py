@@ -1,6 +1,6 @@
 #runs the app
 from app import create_app, db
-from app.models import User, Product, Post
+from app.models import User, Product, BlogPost, Newsletter
 
 app = create_app()
 

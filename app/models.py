@@ -7,10 +7,6 @@ from . import db, login_manager
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
-
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
     __table_args__ = {'extend_existing': True}
@@ -23,7 +19,7 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
     is_admin = db.Column(db.Boolean, default=False)
 
-    posts = db.relationship('Post', backref='author', lazy=True)
+    blog_posts = db.relationship('BlogPost', backref='author', lazy=True)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -45,8 +41,8 @@ class Product(db.Model):
     def __repr__(self):
         return f"Product('{self.name}', '{self.description}', '{self.price}')"
 
-class Post(db.Model):
-    __tablename__ = 'post'
+class BlogPost(db.Model):
+    __tablename__ = 'blog_post'
     id = db.Column(db.BigInteger, primary_key=True, autoincrement=True)
     title = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text, nullable=False)
@@ -54,8 +50,7 @@ class Post(db.Model):
     user_id = db.Column(db.BigInteger, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Post('{self.title}', '{self.date_posted}')"
-
+        return f"BlogPost('{self.title}', '{self.date_posted}')"
 
 class Newsletter(db.Model):
     id = db.Column(db.BigInteger, primary_key=True, autoincrement=True)
@@ -64,8 +59,15 @@ class Newsletter(db.Model):
     def __repr__(self):
         return f"Newsletter('{self.email}')"
 
+#chat model
+class Chat(db.Model):
+    __tablename__ = 'chat'
+    id = db.Column(db.BigInteger, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.BigInteger, db.ForeignKey('user.id'), nullable=False)
+    message = db.Column(db.Text, nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
+    user = db.relationship('User', backref='chats', lazy=True)
 
-
-
-
+    def __repr__(self):
+        return f"Chat('{self.user.username}', '{self.message}', '{self.date_posted}')"

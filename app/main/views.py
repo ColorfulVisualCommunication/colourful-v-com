@@ -25,6 +25,6 @@ def about_page():
 def services_page():
     return render_template('services.html')
 
-@main.route("/faq")
-def faq_page():
-    return render_template('faq.html')
+@main.route("/blog")
+def blog_page():
+    return render_template('blog.html')

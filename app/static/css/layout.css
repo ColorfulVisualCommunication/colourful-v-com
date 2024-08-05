@@ -1,0 +1,85 @@
+/* Dark UI Styles */
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+    background-color: #222222;
+}
+
+.navbar-brand img {
+    height: 40px;
+    
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #0094ff;
+}
+
+.sidebar {
+    background-color: #0f0004;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    transition: all 0.3s;
+}
+
+.sidebar .nav-link {
+    color: #ffffff;
+}
+
+.sidebar .nav-link.active {
+    background-color: #0094ff;
+    color: #ffffff;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #ff035a;
+    color: #222222;
+}
+
+.card {
+    border-radius: 8px;
+    border: none;
+    background-color: #222222;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-title {
+    color: #ffb108;
+}
+
+.card-text {
+    color: #ffffff;
+}
+
+.btn-primary {
+    background-color: #0094ff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #ff035a;
+}
+
+footer {
+    background-color: #222222;
+}
+
+
+
+
+
+
+

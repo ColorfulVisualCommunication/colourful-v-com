@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="">
+    <meta 
+        name="description" 
+        content="branding, captivating graphics and web solutions, networking, to provide innovative solutions tailored to digital needs."
+    >
+    <meta 
+        name="keywords" 
+        content="website, web application, web developer, logo designing, graphic designing, website design, build a website, web design, website designer, web designer"
+    >
+    <meta name="author" content="njoroge">
+    
+    <title>
+        {% block title %}
+            Dashboard
+        {% endblock %}
+    </title>
+    
+    <!-- app/static/css/links.css -->
+    <!--link 
+        rel="stylesheet" 
+        href="{{ url_for('static', filename='css/layout.css') }}" 
+    /-->
+    <link
+        rel="stylesheet" 
+        href="{{ url_for('static', filename='css/main.css') }}" 
+    />
+    
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.min.css"
+      rel="stylesheet"
+    />
+</head>
+
+    
+<body class="container-fluid">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!-- container wrapper -->
+        <div class="container-fluid">
+            <!-- Toggle button -->
+            <button
+                data-mdb-collapse-init
+                class="navbar-toggler"
+                type="button"
+                data-mdb-target="#navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                aria-controls="navbarSupportedContent"
+            >
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar brand -->
+                <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                    <img 
+                        src="{{ url_for('static', filename='img/cvc-logo.svg') }}" 
+                        height="40" 
+                        alt="cvc-logo"
+                        loading="lazy"
+                    />
+                </a>
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a 
+                            class="nav-link" 
+                            href="{{ url_for('admin.dashboard') }}"
+                            ><i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a 
+                            class="nav-link" 
+                            href="{{ url_for('admin.manage_users') }}"
+                            ><i class="fas fa-users"></i> Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a 
+                            class="nav-link" 
+                            href="{{ url_for('admin.manage_blog') }}"
+                            ><i class="fas fa-blog"></i> Blog
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a 
+                            class="nav-link" 
+                            href="{{ url_for('admin.manage_products') }}"
+                            ><i class="fas fa-box"></i> Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a 
+                            class="nav-link"
+                            href="{{ url_for('admin.manage_chats') }}"
+                            ><i class="fas fa-comments"></i> Chats
+                        </a>
+                    </li>
+                </ul>
+                <!-- Left links -->
+            </div>
+            <!-- Collapsible wrapper -->
+
+            <!-- Right elements -->
+            <div class="dropdowm">
+                <!-- Avatar -->
+                <!-- User actions -->
+                {% if current_user.is_authenticated %}
+                <a 
+                    data-mdb-dropdown-init
+                    class="dropdown-toggle d-flex align-items-center hidden-arrow" 
+                    href="#" 
+                    id="navbarDropdownMenuAvatar" 
+                    role="button" data-bs-toggle="dropdown" 
+                    aria-expanded="false"
+                >
+                    <img 
+                        src="{{ url_for('static', filename='img/profile_pics/' + current_user.profile_image) }}" 
+                        class="rounded-circle" 
+                        height="25" 
+                        alt="Profile Picture" 
+                        loading="lazy"
+                    />
+                        <span class="ms-2">{{ current_user.username }}</span>
+                </a>
+                <ul 
+                    class="dropdown-menu drop-down-menu-end" 
+                    aria-labelledby="navbarDropdownMenuAvatar"
+                >
+                    <li>
+                        <a 
+                            class="dropdown-item" 
+                            href="{{ url_for('auth.profile') }}"
+                            ><i class="fas fa-user"></i> My Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a 
+                            class="dropdown-item"
+                            href="#"
+                            ><i class="fas fa-cogs"></i> Settings
+                        </a>
+                    </li>
+                    <li>
+                        <a 
+                            class="dropdown-item" 
+                            href="{{ url_for('auth.logout') }}"
+                            ><i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+                {% else %}
+                <ul>
+                    <li class="nav-item">
+                        <a 
+                            class="btn btn-primary" 
+                            href="{{ url_for('auth.login') }}"
+                            ><i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a 
+                            class="btn btn-primary" 
+                            href="{{ url_for('auth.register') }}"
+                            ><i class="fas fa-user-plus"></i> Register
+                        </a>
+                    </li>
+                </ul>
+                {% endif %}
+            </div>
+            <!-- Right elements -->
+        </div>
+        <!-- container wrapper -->
+    </nav>
+    <!-- Navbar -->
+
+    <!-- Main content -->
+    <main class=" main-content row p-2 ms-sm-auto">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+        <p>&copy; 2024 Colourful Visual Communication. All rights reserved.</p>
+    </footer>
+    
+    <!-- app/static/css/links.js -->
+    <script 
+        src="{{ url_for('static', filename='js/main.js') }}"
+    ></script>
+    <!-- MDB -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"
+    ></script>
+</body>
+</html>
+
+
+

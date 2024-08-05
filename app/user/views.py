@@ -11,3 +11,7 @@ def profile():
 @login_required
 def dashboard():
     return render_template('dashboard.html', title='Dashboard')
+
+
+
+
